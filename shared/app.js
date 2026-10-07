@@ -14,7 +14,7 @@ news:"Newsletter",email:"Email address",join:"Join",legal:["Imprint","Privacy","
 total:"Total",vat:"Prices include VAT. Shipping is added at checkout.",checkout:"Checkout",empty:"Your cart is empty.",
 todo:"This is a design preview. Checkout isn't connected.",mailsub:"Inquiry",prev:"Previous",next:"Next",
 hero_h:"works that remember touch,",hero_m:"mostly.",hint:"Press the surface. It keeps the mark for a while.",
-spec_h:"Works that remember touch."},
+spec_h:"Works that remember touch.",v_grid:"Grid",v_index:"Index"},
 de:{bar:"Designvorschau — kein aktiver Shop",bar2:"Versand aus Berlin in die ganze EU",tableware:"Geschirr",objects:"Objekte",process:"Prozess",about:"Über",all:"Alle",
 cart:"Warenkorb",close:"Schließen",glass:"Glas",porcelain:"Porzellan",viewing:"Ansicht",sort:"Sortieren",s_feat:"Empfohlen",s_low:"Preis aufsteigend",s_high:"Preis absteigend",s_new:"Neueste",
 inquire:"Anfragen",add:"In den Warenkorb",qty:"Menge",tab_about:"Über",tab_det:"Details",tab_ship:"Versand",situ:"In situ",
@@ -27,11 +27,11 @@ news:"Newsletter",email:"E-Mail-Adresse",join:"Anmelden",legal:["Impressum","Dat
 total:"Gesamt",vat:"Preise inkl. MwSt. Versand wird an der Kasse berechnet.",checkout:"Zur Kasse",empty:"Dein Warenkorb ist leer.",
 todo:"Dies ist eine Designvorschau. Die Kasse ist nicht verbunden.",mailsub:"Anfrage",prev:"Zurück",next:"Weiter",
 hero_h:"works that remember touch,",hero_m:"mostly.",hint:"Drück auf die Oberfläche. Sie behält den Abdruck eine Weile.",
-spec_h:"Works that remember touch."}};
+spec_h:"Works that remember touch.",v_grid:"Raster",v_index:"Index"}};
 const get=k=>{try{return localStorage.getItem(k)}catch{return null}},put=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
 let lang=get("lang")||(navigator.language.startsWith("de")?"de":"en");
 let cart={};try{cart=JSON.parse(get("cart")||"{}")}catch{}
-let size=get("gsize")||"M",sort="feat",mat="all";
+let size=get("gsize")||"M";if((window.THEME||{}).views&&!["grid","index"].includes(size))size="grid",sort="feat",mat="all";
 const t=k=>I[lang][k],L=o=>o[lang];
 const eur=n=>new Intl.NumberFormat(lang=="de"?"de-DE":"en-IE",{style:"currency",currency:"EUR",minimumFractionDigits:0}).format(n);
 const by=n=>OBJECTS.find(o=>o.n==n);
@@ -61,12 +61,18 @@ function heroHTML(){
   if(TH.hero=="specimen"){const o=by("014");return `<section class="hero spec"><div class="spec-h ttl">${t("spec_h")}</div><a href="#/p/014" class="spec-obj"><div class="im">${img(o.imgs[0],L(o.name))}</div>
     <span class="ann a1 lbl">№ ${o.n} — ${L(o.name)}</span><span class="ann a2 lbl">${o.dims}<br>${t(o.mat)}</span><span class="ann a3 lbl">${t("one")} — ${o.year}</span></a>
     <div class="spec-rail lbl"><span>Glass / Porcelain</span><span>Berlin</span><a href="#/shop/tableware"><span class="dot"></span>${OBJECTS.filter(o=>o.price!=null).length} ${t("tableware")} →</a></div></section>`}
+  if(TH.hero=="split") return `<section class="hero split"><div class="split-t"><h1 class="ttl">${t("hero_h")} <span class="dim">${t("hero_m")}</span></h1>
+    <a class="split-new" href="${e.href}"><span class="lbl dim">${L(e.eyebrow)}</span><span class="nmx">${L(e.title)}</span><span class="lbl">${priceTxt(by("016"))} →</span></a></div>
+    <a href="${e.href}" class="im">${img(e.img,L(e.title))}</a></section>`;
   return `<section class="hero"><a href="${e.href}" class="im" style="position:absolute;inset:0">${img(e.img,L(e.title))}</a><span class="eb lbl">${L(e.eyebrow)}</span><div class="cap"><a href="${e.href}" class="ttl">${L(e.title)}</a></div></section>`;
 }
 function home(){
-  const E=EDITORIAL,s=E.single;
-  return heroHTML()+
-  `<section class="blk"><a href="${s.href}" class="single"><div class="im">${img(s.img,L(s.title))}</div><div class="capline"><span class="lbl">${L(s.eyebrow)}</span><span class="ttl">${L(s.title)}</span></div></a></section>
+  const E=EDITORIAL,s=E.single,so=by("015");
+  const single=TH.home=="spread"
+   ?`<section class="blk spread"><a href="${s.href}" class="im">${img(s.img,L(s.title))}</a><div class="spread-t"><span class="lbl dim">${L(s.eyebrow)}</span><a href="${s.href}" class="ttl">${L(s.title)}</a><p>${L(so.d)}</p><a class="lbl under" href="${s.href}">${priceTxt(so)} — ${t("add")} →</a></div></section>`
+   :`<section class="blk"><a href="${s.href}" class="single"><div class="im">${img(s.img,L(s.title))}</div><div class="capline"><span class="lbl">${L(s.eyebrow)}</span><span class="ttl">${L(s.title)}</span></div></a></section>`;
+  return heroHTML()+single+
+  `
    <section class="pair">${E.pair.map(p=>`<a href="${p.href}"><div class="im">${img(p.img,L(p.title))}</div><div class="capline"><span class="lbl">${L(p.eyebrow)}</span><span class="ttl">${L(p.title)}</span></div></a>`).join("")}</section>
    <section class="blk trio">${E.trio.map(p=>`<figure><div class="im">${img(p.img,L(p.cap))}</div><figcaption class="lbl">${L(p.cap)}</figcaption></figure>`).join("")}</section>`;
 }
@@ -77,11 +83,14 @@ function collection(col){
   if(sort=="low")list.sort((a,b)=>(a.price??1e9)-(b.price??1e9));
   if(sort=="high")list.sort((a,b)=>(b.price??-1)-(a.price??-1));
   if(sort=="new")list.sort((a,b)=>b.year-a.year||b.n.localeCompare(a.n));
-  const cols={S:6,M:4,L:2}[size];
-  return `<div class="ctl lbl"><div class="chips"><span>${t("viewing")} ${t(col)}</span>${["all","glass","porcelain"].map(m=>`<button data-mat="${m}" class="${mat==m?"cur":""}">${t(m)}</button>`).join("")}</div>
+  const cols={S:6,M:4,L:2}[size]||3,views=TH.views?["grid","index"]:["S","M","L"];
+  const body=size=="index"
+   ?`<ol class="ilist">${list.map(o=>`<li><a href="#/p/${o.n}"><span class="lbl dim">${o.n}</span><span class="nmx">${L(o.name)}</span><span class="lbl dim c3">${t(o.mat)}</span><span class="lbl dim c4">${o.dims}</span><span class="lbl">${priceTxt(o)}</span><span class="ith">${img(o.imgs[0])}</span></a></li>`).join("")}</ol>`
+   :`<div class="grid" style="--cols:${cols}">${list.map(card).join("")}</div>`;
+  return `<div class="ctl lbl"><div class="chips">${TH.views?`<h1 class="ttl">${t(col)}</h1>`:`<span>${t("viewing")} ${t(col)}</span>`}${["all","glass","porcelain"].map(m=>`<button data-mat="${m}" class="${mat==m?"cur":""}">${t(m)}</button>`).join("")}</div>
     <label>${t("sort")} + <select id="sort" aria-label="${t("sort")}">${["feat","low","high","new"].map(s=>`<option value="${s}" ${sort==s?"selected":""}>${t("s_"+s)}</option>`).join("")}</select></label>
-    <div class="sz">${["S","M","L"].map(s=>`<button data-size="${s}" class="${size==s?"cur":""}">${s}</button>`).join("")}</div></div>
-    <div class="grid" style="--cols:${cols}">${list.map(card).join("")}</div>`;
+    <div class="sz">${views.map(s=>`<button data-size="${s}" class="${size==s?"cur":""}">${t("v_"+s)||s}</button>`).join("")}</div></div>
+    ${body}`;
 }
 const card=o=>`<a class="card" href="#/p/${o.n}"><div class="im">${img(o.imgs[0],L(o.name))}${o.situ[0]?img(o.situ[0]):""}</div>
   <div class="meta lbl"><span class="no dim">№ ${o.n} — ${t(o.mat)}</span><span class="nm">${L(o.name)}</span><span class="pr">${priceTxt(o)}</span><span class="st dim">${stTxt(o)}</span></div></a>`;
@@ -95,18 +104,21 @@ function product(n){
   return `<section class="pdp"><aside class="pinfo">
     <div><span class="no lbl dim">№ ${o.n}</span><div class="pname">${L(o.name)}</div><div class="lbl">${priceTxt(o)}</div></div>
     <div class="lbl">${o.colour}</div>${buy}
-    <div class="tabs lbl" role="tablist"><button role="tab" aria-selected="true" data-tab="a">${t("tab_about")}</button><button role="tab" aria-selected="false" data-tab="d">${t("tab_det")}</button><button role="tab" aria-selected="false" data-tab="s">${t("tab_ship")}</button></div>
-    <div class="tabbody" id="tb"></div></aside>
+    ${TH.acc?["a","d","s"].map((k,i)=>`<details class="acc" ${i==0?"open":""}><summary class="lbl">${t({a:"tab_about",d:"tab_det",s:"tab_ship"}[k])}</summary><div>${tabHTML(o,k)}</div></details>`).join("")
+    :`<div class="tabs lbl" role="tablist"><button role="tab" aria-selected="true" data-tab="a">${t("tab_about")}</button><button role="tab" aria-selected="false" data-tab="d">${t("tab_det")}</button><button role="tab" aria-selected="false" data-tab="s">${t("tab_ship")}</button></div>
+    <div class="tabbody" id="tb"></div>`}</aside>
    <div class="pimgs">${o.imgs.map(p=>`<div class="im">${img(p,L(o.name))}</div>`).join("")}
     ${o.situ.length?`<div class="situ-h lbl">${t("situ")}</div>${o.situ.map(p=>`<div class="im">${img(p)}</div>`).join("")}`:""}</div>
    <div class="arrows lbl"><a href="#/p/${prev.n}" aria-label="${t("prev")}">←</a><a href="#/p/${next.n}" aria-label="${t("next")}">→</a></div></section>`;
 }
+const tabHTML=(o,k)=>k=="a"?`<p>${L(o.d)}</p>`:k=="s"?`<p>${t("ship")}</p>`:
+  `<dl class="lbl"><dt class="dim">${t("d_mat")}</dt><dd>${t(o.mat)}</dd><dt class="dim">${t("d_col")}</dt><dd>${o.colour}</dd><dt class="dim">${t("d_dim")}</dt><dd>${o.dims}</dd><dt class="dim">${t("d_year")}</dt><dd>${o.year}</dd><dt class="dim">${t("d_ed")}</dt><dd>${o.price==null?t("one"):t("open_ed")}</dd></dl>`;
 function pdpBind(n){
   const o=by(n);if(!o)return;let q=1;
-  const tab=k=>{$$(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab==k));
-    $("#tb").innerHTML=k=="a"?`<p>${L(o.d)}</p>`:k=="s"?`<p>${t("ship")}</p>`:
-    `<dl class="lbl"><dt class="dim">${t("d_mat")}</dt><dd>${t(o.mat)}</dd><dt class="dim">${t("d_col")}</dt><dd>${o.colour}</dd><dt class="dim">${t("d_dim")}</dt><dd>${o.dims}</dd><dt class="dim">${t("d_year")}</dt><dd>${o.year}</dd><dt class="dim">${t("d_ed")}</dt><dd>${o.price==null?t("one"):t("open_ed")}</dd></dl>`};
-  $(".tabs").onclick=e=>{const b=e.target.closest("button");if(b)tab(b.dataset.tab)};tab("a");
+  if($(".tabs")){
+    const tab=k=>{$$(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab==k));$("#tb").innerHTML=tabHTML(o,k)};
+    $(".tabs").onclick=e=>{const b=e.target.closest("button");if(b)tab(b.dataset.tab)};tab("a");
+  }
   $$("[data-q]").forEach(b=>b.onclick=()=>{q=Math.max(1,Math.min(o.stock,q+ +b.dataset.q));$("#q").textContent=q});
   const add=$("#add");if(add)add.onclick=()=>{cart[n]=Math.min(o.stock,(cart[n]||0)+q);put("cart",JSON.stringify(cart));chrome();renderCart();openCart()};
 }

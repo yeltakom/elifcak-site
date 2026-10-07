@@ -3,7 +3,7 @@
 Static prototypes for a portfolio + shop site for Elif Çak (glass & porcelain, Berlin). EN/DE, EUR.
 
 - `index.html` — chooser
-- `v1-quiet/` — closest to Sophie Lou Jacobsen: photo-led, serif caps
+- `v1-quiet/` — photo-led and calm: split hero, Newsreader + Instrument Sans, grid/index toggle
 - `v2-specimen/` — museum catalogue: object numbers, sizes, stock, mono labels
 - `v3-touch/` — editorial, dark smoked rose, italic Bodoni, pressable porcelain hero
 - `shared/` — one engine (`app.js`), content (`data.js`), layout (`base.css`); each variant only adds `theme.css`

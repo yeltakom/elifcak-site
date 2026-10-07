@@ -1,6 +1,72 @@
-/* 1 — QUIET: closest to Sophie Lou Jacobsen. Photo-led, one serif in caps, nothing else. */
-:root{--bg:#fbfbf9;--fg:#151515;--dim:#8b8a86;--line:#e3e2de;--accent:#9b7477;--ph:#eeede9;
---bar-bg:#f0eee9;--bar-fg:#151515;--btn-bg:#151515;--btn-fg:#fbfbf9;
---display:'EB Garamond',Georgia,serif;--body:'EB Garamond',Georgia,serif;--label:'EB Garamond',Georgia,serif;
---body-size:16px;--label-size:13px;--label-ls:.05em;--word-size:24px;--ttl-size:clamp(22px,2.4vw,30px);--card-size:13px}
-.tabbody p,.page-h p,.about-t p{font-size:17px;line-height:1.45}
+/* 1 — QUIET, own version. Photo-led like SLJ, but: lowercase italic wordmark left, split hero,
+   Newsreader + Instrument Sans in sentence case, grid/index toggle, info on the right with accordions. */
+:root{--bg:#f6f5f1;--fg:#1a1918;--dim:#8d8a85;--line:#e0ded8;--accent:#a07c7f;--ph:#ecebe6;
+--bar-bg:transparent;--bar-fg:#1a1918;--btn-bg:#1a1918;--btn-fg:#f6f5f1;
+--display:'Newsreader',Georgia,serif;--body:'Instrument Sans',system-ui,sans-serif;--label:'Instrument Sans',system-ui,sans-serif;
+--body-size:15px;--label-size:13px;--label-ls:0;
+--word-font:'Newsreader',serif;--word-style:italic;--word-tt:none;--word-size:30px;--word-ls:-.01em;--word-w:300;
+--ttl-tt:none;--ttl-ls:-.015em;--ttl-w:300;--ttl-size:clamp(30px,3.6vw,52px);
+--card-font:'Newsreader',serif;--card-size:19px;--card-tt:none;--card-ls:-.01em;--card-style:italic;
+--pdp-font:'Newsreader',serif;--pdp-size:40px;--pdp-tt:none;--pdp-ls:-.02em;--pdp-style:italic;--card-ratio:4/5}
+.lbl{text-transform:none}
+/* preview note: small corner tag instead of a full-width bar */
+.bar{position:fixed;right:14px;bottom:14px;z-index:60;padding:6px 11px;border:1px solid var(--line);border-radius:99px;background:var(--bg);font-size:11px}
+/* header: wordmark left, nav after it, tools right */
+header.top{grid-template-columns:auto 1fr auto;column-gap:40px;padding-top:18px;padding-bottom:18px}
+header.top .word{order:-1}
+header.top nav{gap:22px}
+header.top a:hover,header.top button:hover,.cur{text-decoration:none;color:var(--accent)}
+.cur{color:var(--fg)!important;box-shadow:inset 0 -1px 0 var(--fg)}
+/* split hero */
+.hero.split{display:grid;grid-template-columns:minmax(300px,.8fr) 1.6fr;gap:var(--gut);padding:0 var(--gut) var(--gut);height:calc(100svh - 76px)}
+.split-t{display:flex;flex-direction:column;justify-content:space-between;padding:6vh 0 4px}
+.split-t h1{font-size:clamp(40px,4.6vw,76px);line-height:1;max-width:8ch}
+.split-t h1 .dim{font-style:italic}
+.split-new{display:grid;gap:2px;padding-top:12px;border-top:1px solid var(--fg);max-width:260px}
+.nmx{font:italic 300 22px/1.1 'Newsreader',serif}
+.split-new:hover .nmx{color:var(--accent)}
+.hero.split .im{height:100%}
+/* text + image spread */
+.spread{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,6vw,96px);padding:96px var(--gut);align-items:end}
+.spread .im{aspect-ratio:4/5}
+.spread-t{display:grid;gap:14px;max-width:26em;padding-bottom:6px}
+.spread-t p{font:300 20px/1.4 'Newsreader',serif}
+.under{border-bottom:1px solid;justify-self:start;padding-bottom:2px}
+.pair,.trio{gap:var(--gut);padding:0 var(--gut)}
+.capline{justify-content:flex-start;text-align:left}
+.capline .ttl{font-size:26px;font-style:italic}
+/* collection */
+.ctl{padding:36px var(--gut) 24px;align-items:end}
+.ctl .chips{align-items:baseline;gap:16px}.ctl h1{font-size:46px;margin-right:10px;font-style:italic}
+.ctl select{text-transform:none}
+.ctl .chips button{color:var(--dim)}.ctl .chips button.cur{color:var(--fg)}
+.grid{gap:40px var(--gut);padding:0 var(--gut)}
+.card .meta{grid-template-columns:1fr auto;align-items:baseline;padding:12px 0 0}
+.card .pr{color:var(--dim)}
+.ilist{list-style:none;margin:0 var(--gut);border-top:1px solid var(--fg)}
+.ilist a{display:grid;grid-template-columns:56px 2fr 1fr 1.4fr 90px 44px;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.ilist .nmx{font-size:28px}.ilist a:hover .nmx{color:var(--accent)}
+.ith{width:44px;height:56px;overflow:hidden;opacity:0;transition:opacity .2s}.ilist a:hover .ith{opacity:1}
+/* product: images left, info right, accordions */
+.pdp{grid-template-columns:1fr minmax(300px,380px);gap:clamp(24px,5vw,72px)}
+.pdp .pinfo{order:2}.pdp .arrows{display:none}
+.pimgs{margin:0;max-width:none;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.pimgs .im:first-child{grid-column:1/-1}
+.situ-h{grid-column:1/-1;font:italic 300 26px 'Newsreader',serif;text-transform:none;margin:24px 0 0}
+.pinfo>*{border-top:0;padding:8px 0}
+.pinfo .no{display:none}
+.pinfo .pname{margin-bottom:4px}
+.acc{border-top:1px solid var(--line)!important;padding:0!important}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;padding:12px 0}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:after{content:"+";color:var(--dim)}.acc[open] summary:after{content:"−"}
+.acc>div{padding:0 0 14px}.acc p{font:300 18px/1.45 'Newsreader',serif}
+.acc dl{display:grid;grid-template-columns:96px 1fr;gap:5px 10px}
+.btn{border-radius:99px;margin-top:6px}
+@media (max-width:860px){
+  .hero.split{grid-template-columns:1fr;height:auto}.hero.split .im{aspect-ratio:4/5}
+  .spread{grid-template-columns:1fr;padding:56px var(--gut)}
+  .pdp{grid-template-columns:1fr}.pdp .pinfo{order:0}.pimgs{grid-template-columns:1fr}
+  .ilist a{grid-template-columns:40px 1fr 70px}.ilist .c3,.ilist .c4,.ith{display:none}
+  header.top .word{order:0}
+}
