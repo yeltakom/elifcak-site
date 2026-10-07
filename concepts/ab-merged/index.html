@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Elif Çak — Glass &amp; Porcelain, Berlin</title>
+<meta name="description" content="Elif Çak makes glass and porcelain objects in Berlin. Works that remember touch, mostly.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,500&family=Geist:wght@300;400;500&family=Geist+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#index">Skip to work</a>
+<header class="nav mono">
+  <a href="#top" class="logo">Elif Çak</a>
+  <nav><a href="#index" data-i="nav_index"></a><a href="#shop" data-i="nav_shop"></a><a href="#studio" data-i="nav_studio"></a></nav>
+  <div class="tools"><button id="lang" aria-label="Switch language"></button><button id="openCart"><span data-i="cart"></span> <span id="cartCount">0</span></button></div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Intro">
+    <canvas id="surface" aria-hidden="true"></canvas>
+    <h1><span>works that</span><span>remember</span><span>touch,<sup class="mono">mostly.</sup></span></h1>
+    <p class="hint mono" data-i="hint"></p>
+    <div class="hero-rail mono">
+      <span>Glass / Porcelain</span><span>Berlin</span><a href="#shop" id="availLink"></a>
+    </div>
+  </section>
+
+  <section class="touch" aria-labelledby="t-touch">
+    <div class="touch-head"><h2 id="t-touch" class="mono" data-i="process"></h2><p data-i="process_p"></p></div>
+    <div class="arches" id="arches"></div>
+  </section>
+
+  <section id="index" class="specimen" aria-labelledby="t-index">
+    <div class="head"><h2 id="t-index"><em data-i="index"></em></h2>
+      <div class="filters mono" role="group" aria-label="Filter"><button aria-pressed="true" data-f="all" data-i="all"></button><button aria-pressed="false" data-f="glass" data-i="glass"></button><button aria-pressed="false" data-f="porcelain" data-i="porcelain"></button></div></div>
+    <div class="cols mono" aria-hidden="true"><span>№</span><span data-i="c_object"></span><span data-i="c_mat"></span><span data-i="c_dim"></span><span data-i="c_year"></span><span data-i="c_status"></span></div>
+    <ol class="rows" id="rows"></ol>
+    <div class="peek" id="peek" aria-hidden="true"></div>
+  </section>
+
+  <section id="shop" class="specimen shop" aria-labelledby="t-shop">
+    <div class="head"><h2 id="t-shop"><em data-i="shop"></em></h2><p class="mono dim" data-i="shop_note"></p></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="studio" class="studio" aria-labelledby="t-studio">
+    <div class="portrait arch" style="background-image:url(../../img/portrait.jpg)" role="img" aria-label="Elif Çak"></div>
+    <div class="studio-text">
+      <h2 id="t-studio"><em data-i="studio"></em></h2>
+      <p data-i="studio_p1"></p><p data-i="studio_p2"></p>
+      <dl class="mono"><dt data-i="f_based"></dt><dd>Berlin, DE</dd><dt data-i="f_mat"></dt><dd data-i="f_mat_v"></dd><dt data-i="f_for"></dt><dd data-i="f_for_v"></dd></dl>
+      <a class="mail" href="mailto:studio@elifcak.com">studio@elifcak.com</a>
+      <a class="mono under" href="https://instagram.com/elifcak" target="_blank" rel="noopener">Instagram @elifcak ↗</a>
+    </div>
+  </section>
+</main>
+
+<footer class="mono"><span>© <span id="yr"></span> Elif Çak</span><span class="legal"><a href="#" data-i="imprint"></a><a href="#" data-i="privacy"></a><a href="#" data-i="terms"></a><a href="#" data-i="returns"></a><a href="#" data-i="shipping"></a></span></footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Cart" aria-hidden="true">
+  <div class="dh mono"><span data-i="cart"></span><button id="closeCart" data-i="close"></button></div>
+  <div class="ci" id="cartItems"></div>
+  <div class="df"><div class="total mono"><span data-i="total"></span><b id="cartTotal"></b></div><p class="mono dim small" data-i="vat"></p><button class="btn" id="checkout" data-i="checkout"></button></div>
+</aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
+<script src="data.js"></script><script src="app.js"></script>
+</body>
+</html>

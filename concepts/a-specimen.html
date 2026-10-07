@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A — Specimen</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f3f1;--ink:#0d0d0d;--dim:#8a8984}
+*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font:400 16px/1.4 'Inter Tight';min-height:100vh;
+background-image:linear-gradient(#0001 1px,transparent 1px),linear-gradient(90deg,#0001 1px,transparent 1px);background-size:80px 80px}
+.m{font:300 11px/1.5 'JetBrains Mono';letter-spacing:.08em;text-transform:uppercase}
+header{display:flex;justify-content:space-between;padding:18px 28px;border-bottom:1px solid var(--ink);background:var(--bg)}
+.stage{position:relative;height:calc(100vh - 56px - 150px);min-height:480px;display:grid;place-items:center}
+h1{position:absolute;left:28px;bottom:10px;font-size:clamp(3rem,11vw,10rem);font-weight:500;letter-spacing:-.05em;line-height:.8}
+.obj{position:relative;width:min(40vh,360px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 28%,#fff,#e8e6e0 55%,#c4c1b8);box-shadow:inset -25px -30px 60px #0002,0 40px 50px -30px #0006}
+.obj:after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#fff 0 3px,#0000 4.5px);background-size:19px 19px;opacity:.9;mask:radial-gradient(circle,#000 60%,transparent 72%);-webkit-mask:radial-gradient(circle,#000 60%,transparent 72%)}
+.tag{position:absolute;white-space:nowrap}.tag:before{content:"";position:absolute;top:50%;height:1px;background:var(--ink);width:70px}
+.t1{left:calc(50% + min(22vh,190px));top:30%;padding-left:84px}.t1:before{left:0}
+.t2{right:calc(50% + min(22vh,190px));top:62%;padding-right:84px;text-align:right}.t2:before{right:0}
+.t3{left:50%;top:6%;transform:translateX(-50%)}.t3:before{display:none}
+.cross{position:absolute;font:300 14px 'JetBrains Mono'}
+.rail{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);background:var(--bg)}
+.rail div{padding:14px 28px;border-right:1px solid var(--ink);height:150px;display:flex;flex-direction:column;justify-content:space-between}.rail div:last-child{border:0}
+.rail b{font-weight:500;font-size:1.5rem;letter-spacing:-.03em}
+@media(max-width:800px){.rail{grid-template-columns:1fr 1fr}.rail div{height:110px}.tag{display:none}}
+</style></head><body>
+<header class="m"><b>ELIF ÇAK</b><span>Index — Shop — About</span><span>Berlin 52.52°N</span></header>
+<section class="stage"><span class="m tag t3">FIG. 03 — PORCELAIN, PRESSED</span><div class="obj"></div>
+<span class="m tag t1">Ø 140 MM<br>HAND-PRESSED<br>№ 014 — 1/1</span><span class="m tag t2">SURFACE: 340 FORMS<br>FIRED 1240°C</span>
+<h1>Works that<br>remember touch.</h1></section>
+<section class="rail"><div><span class="m dim">№ 014 / PORCELAIN</span><b>Spiked Vessel</b><span class="m">€ 180 — 1 left</span></div><div><span class="m dim">№ 015 / GLASS</span><b>Smoked Goblet</b><span class="m">€ 149 — 3 left</span></div><div><span class="m dim">№ 016 / PORCELAIN</span><b>Pinched Bowl</b><span class="m">€ 95 — sold</span></div><div><span class="m dim">№ 017 / GLASS</span><b>Fused Light</b><span class="m">€ 180 — made to order</span></div></section>
+</body></html>

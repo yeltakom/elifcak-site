@@ -1,0 +1,30 @@
+/* 2 — SPECIMEN: same skeleton, run like a museum catalogue. Numbers, sizes, stock, mono labels. */
+:root{--bg:#e7e6e2;--fg:#121212;--dim:#7f7c78;--line:#c6c4bf;--accent:#ff6a2b;--ph:#d9d8d3;
+--bar-bg:#121212;--bar-fg:#e7e6e2;--btn-bg:#121212;--btn-fg:#e7e6e2;
+--display:'Geist',system-ui,sans-serif;--body:'Geist',system-ui,sans-serif;--label:'Geist Mono',ui-monospace,monospace;
+--body-w:300;--label-size:11px;--label-ls:.07em;--label-w:300;
+--word-font:'Geist Mono',monospace;--word-size:13px;--word-ls:.1em;
+--ttl-size:clamp(28px,3.4vw,46px);--ttl-tt:none;--ttl-ls:-.035em;--ttl-w:500;
+--show-no:block;--show-st:block;--card-ratio:1/1;--pdp-ratio:1/1;--proc-ratio:1/1;
+--pdp-font:'Geist',sans-serif;--pdp-size:34px;--pdp-tt:none;--pdp-ls:-.035em}
+header.top{border-bottom:1px solid var(--fg)}
+.grid,.proc,.pair,.trio{gap:0}
+.card,.proc figure,.pair>a,.trio figure{background:var(--bg);box-shadow:0 0 0 .5px var(--line)}
+.card .im,.pimgs .im,.proc .im{background:#efeeea}
+.card .im img:first-child,.pimgs .im img{object-fit:contain;padding:8%;mix-blend-mode:multiply}
+.card .meta{padding:10px 12px 22px;grid-template-columns:1fr auto}.card .meta .nm{grid-column:1/-1;order:-1}
+.card .nm{font:500 18px/1.1 'Geist',sans-serif;text-transform:none;letter-spacing:-.02em}
+.pinfo .pname{line-height:.95;margin:6px 0}
+.tabbody dl{grid-template-columns:110px 1fr}
+/* hero: object on graph paper with annotations */
+.hero.spec{background-color:var(--bg);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:72px 72px;display:grid;place-items:center}
+.spec-h{position:absolute;left:var(--gut);bottom:72px;font-size:clamp(40px,7.5vw,112px);max-width:9ch;line-height:.9;z-index:2}
+.spec-obj{position:relative;width:min(44vh,400px);aspect-ratio:3/4}
+.spec-obj .im{width:100%;height:100%;background:#efeeea;box-shadow:0 0 0 1px var(--fg)}
+.ann{position:absolute;white-space:nowrap}
+.ann:before{content:"";position:absolute;top:.6em;height:1px;width:56px;background:var(--fg)}
+.a1{left:calc(100% + 70px);top:12%}.a1:before{right:calc(100% + 8px)}
+.a2{left:calc(100% + 70px);top:55%}.a2:before{right:calc(100% + 8px)}
+.a3{right:calc(100% + 70px);top:30%;text-align:right}.a3:before{left:calc(100% + 8px)}
+.spec-rail{position:absolute;left:var(--gut);right:var(--gut);bottom:18px;display:flex;justify-content:space-between;border-top:1px solid var(--fg);padding-top:9px}
+@media (max-width:860px){.ann{display:none}.spec-h{bottom:60px}.spec-obj{width:60vw;margin-top:-80px}}

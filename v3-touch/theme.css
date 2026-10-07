@@ -1,0 +1,24 @@
+/* 3 — TOUCH: same skeleton, editorial and dark. Smoked-rose ground, italic Bodoni, arched frames, pressable hero. */
+:root{--bg:#2b2022;--fg:#efe5e2;--dim:#b29b9b;--line:#4b3a3d;--accent:#e8a08a;--ph:#3a2c2f;--surface:#e7e6e2;
+--bar-bg:#1f1718;--bar-fg:#efe5e2;--btn-bg:#efe5e2;--btn-fg:#2b2022;
+--display:'Bodoni Moda',Didot,serif;--body:'Geist',system-ui,sans-serif;--label:'Geist Mono',ui-monospace,monospace;
+--body-w:300;--label-size:11px;--label-ls:.07em;--label-w:300;
+--word-style:italic;--word-tt:none;--word-size:26px;--word-ls:0;
+--ttl-size:clamp(30px,4vw,56px);--ttl-tt:none;--ttl-style:italic;--ttl-ls:-.01em;
+--card-font:'Bodoni Moda',serif;--card-size:22px;--card-tt:none;--card-style:italic;--card-ls:0;
+--pdp-font:'Bodoni Moda',serif;--pdp-size:44px;--pdp-tt:none;--pdp-style:italic;--pdp-ls:-.01em;--show-st:block}
+.grid{gap:28px 14px;padding:0 var(--gut)}
+.card .im,.single .im,.trio .im,.proc .im{border-radius:999px 999px 4px 4px}
+.pair{gap:14px;padding:0 var(--gut)}.pair .im{border-radius:4px}
+.trio,.proc{gap:14px;padding-left:var(--gut);padding-right:var(--gut)}
+.pimgs .im:first-child{border-radius:999px 999px 4px 4px}
+.card .meta{padding-top:12px}
+/* hero: porcelain surface you can press */
+.hero.surface{background:var(--surface);color:#121212}
+#surface{position:absolute;inset:0;width:100%;height:100%;cursor:none;touch-action:pan-y}
+.sh{position:absolute;left:var(--gut);bottom:14vh;pointer-events:none;font:italic 400 clamp(56px,10.5vw,170px)/.86 'Bodoni Moda',serif;letter-spacing:-.02em}
+.sh span{display:block}.sh span+span{padding-left:10vw}
+.sh sup{font:300 11px 'Geist Mono',monospace;letter-spacing:.07em;vertical-align:baseline;margin-left:14px;color:#7f7c78}
+.hint{position:absolute;right:var(--gut);top:40%;max-width:190px;text-align:right;color:#7f7c78;pointer-events:none}
+.hero-link{position:absolute;right:var(--gut);bottom:22px;color:#121212}
+@media (max-width:860px){.hint{top:auto;bottom:70px}}

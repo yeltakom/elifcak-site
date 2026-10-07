@@ -1,0 +1,6 @@
+/* 1 — QUIET: closest to Sophie Lou Jacobsen. Photo-led, one serif in caps, nothing else. */
+:root{--bg:#fbfbf9;--fg:#151515;--dim:#8b8a86;--line:#e3e2de;--accent:#9b7477;--ph:#eeede9;
+--bar-bg:#f0eee9;--bar-fg:#151515;--btn-bg:#151515;--btn-fg:#fbfbf9;
+--display:'EB Garamond',Georgia,serif;--body:'EB Garamond',Georgia,serif;--label:'EB Garamond',Georgia,serif;
+--body-size:16px;--label-size:13px;--label-ls:.05em;--word-size:24px;--ttl-size:clamp(22px,2.4vw,30px);--card-size:13px}
+.tabbody p,.page-h p,.about-t p{font-size:17px;line-height:1.45}
